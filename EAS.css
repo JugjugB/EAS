@@ -10,3 +10,7 @@
     height: 15px;
     padding: 5px;
 }
+
+.hovered {
+   background-color: black; 
+}

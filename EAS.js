@@ -1,20 +1,46 @@
-const container = document.querySelector('.container');
-for (i = 0; i < 16; i++) {
-    for (j = 0; j < 16; j++) {
-        let div = document.createElement('div');
-        container.appendChild(div);
-    } 
+function createGrid(container, size) {
+    container.textContent = '';
+    container.style.cssText = `width: 500px; height: 500px; display: inline-grid; grid-template-columns: repeat(${size}, 1fr);`
+    for (i = 0; i < size; i++) {
+        for (j = 0; j < size; j++) {
+            let div = document.createElement('div');
+            container.appendChild(div);
+        }
+    }
+    let alldivs = document.querySelectorAll('.container div');
+    alldivs.forEach((div) => {
+        div.addEventListener(('mouseenter'), () => {
+            div.setAttribute("class", "hovered");
+        })
+    })
 }
 
-const alldivs = document.querySelectorAll('.container div');
+let sidesize = 16;
+const body = document.querySelector('body');
+const container = document.createElement('div');
+container.setAttribute('class', 'container');
+container.style.cssText = `width: 500px; height: 500px; display: inline-grid; grid-template-columns: repeat(${sidesize}, 1fr);`
+
+body.appendChild(container);
+for (i = 0; i < sidesize; i++) {
+    for (j = 0; j < sidesize; j++) {
+        let div = document.createElement('div');
+        container.appendChild(div);
+    }
+}
+
+let alldivs = document.querySelectorAll('.container div');
 alldivs.forEach((div) => {
     div.addEventListener(('mouseenter'), () => {
         div.setAttribute("class", "hovered");
     })
 })
 
-const clearbutton = document.querySelector('.clear');
+const clearbutton = document.querySelector('button');
 clearbutton.addEventListener(('click'), () => {
-    let blackdivs = document.querySelectorAll('.hovered');
-    blackdivs.forEach((div))
+    alldivs.forEach((div) => {
+        div.classList.remove('hovered');
+    }) 
+    let sidesize = Number(prompt('Size'));
+    createGrid(container, sidesize);
 })

@@ -1,16 +1,12 @@
-.container {
-    display: inline-grid;
-    grid-template-columns: repeat(16, 1fr);
-}
-
-.container div {
-    border-style: solid;
-    border-width: 1px;;
-    width: 15px;
-    height: 15px;
-    padding: 5px;
-}
-
 .hovered {
    background-color: black; 
+}
+
+body {
+    text-align: center;
+}
+
+.cleardiv {
+    display: block;
+    margin: 5px;
 }

@@ -41,6 +41,11 @@ clearbutton.addEventListener(('click'), () => {
     alldivs.forEach((div) => {
         div.classList.remove('hovered');
     }) 
-    let sidesize = Number(prompt('Size'));
+
+    let sidesize = prompt('Size (1 - 100)');
+    while ((sidesize > 100) || (isNaN(sidesize))) {
+        sidesize = prompt('Size (1 - 100)');
+    }
+
     createGrid(container, sidesize);
 })

@@ -2,10 +2,12 @@
 
 let sidesize = 16; // set grid size to 16 (per side)
 
+const ui = document.querySelector('.ui');
+
 const container = document.createElement('div'); // create container div
 container.setAttribute('class', 'container');
 
-document.body.appendChild(container); 
+ui.appendChild(container); 
 
 // create grid function
 function createGrid(container, size) {

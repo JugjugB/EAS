@@ -1,51 +1,76 @@
+// initialize body,container, and button elements 
+
+let sidesize = 16; // set grid size to 16 (per side)
+
+const body = document.querySelector('body');
+body.style.textAlign = 'center';
+
+const container = document.createElement('div'); // create container div
+container.setAttribute('class', 'container');
+container.style.cssText = 'width: 500px; height: 500px; display: inline-grid;' 
+                          + `grid-template-columns: repeat(${sidesize}, 1fr);`;
+body.appendChild(container); 
+
+const buttons = document.querySelector('.buttons');
+buttons.style.cssText = 'display: block; margin: 5px;'
+
+// create grid function
 function createGrid(container, size) {
-    container.textContent = '';
-    container.style.cssText = `width: 500px; height: 500px; display: inline-grid; grid-template-columns: repeat(${size}, 1fr);`
+    container.textContent = ''; // erase all divs when creating new grid
+    container.style.cssText = 'width: 500px; height: 500px; display: inline-grid;' 
+                              + `grid-template-columns: repeat(${size}, 1fr);`;
+
+    // add new divs
     for (i = 0; i < size; i++) {
         for (j = 0; j < size; j++) {
             let div = document.createElement('div');
             container.appendChild(div);
         }
     }
+
+    let backgroundColor = 'red'; // set color
+
     let alldivs = document.querySelectorAll('.container div');
+
+    // drawing function
     alldivs.forEach((div) => {
         div.addEventListener(('mouseenter'), () => {
             div.setAttribute("class", "hovered");
+            div.style.cssText = `background-color: ${backgroundColor};`;
+        })
+    })
+
+    // toggle grid function
+    const gridbutton = document.querySelector('.grid');
+    gridbutton.addEventListener(('click'), () => {
+        alldivs.forEach((div) => {
+            if(!div.getAttribute("style")) {
+                div.style.borderStyle = 'solid';
+            }
+            else {
+                div.style.borderStyle = null;
+            }
+            
         })
     })
 }
 
-let sidesize = 16;
-const body = document.querySelector('body');
-const container = document.createElement('div');
-container.setAttribute('class', 'container');
-container.style.cssText = `width: 500px; height: 500px; display: inline-grid; grid-template-columns: repeat(${sidesize}, 1fr);`
+// initialize grid
+createGrid(container, sidesize);
 
-body.appendChild(container);
-for (i = 0; i < sidesize; i++) {
-    for (j = 0; j < sidesize; j++) {
-        let div = document.createElement('div');
-        container.appendChild(div);
-    }
-}
+alldivs = document.querySelectorAll('.container div');
 
-let alldivs = document.querySelectorAll('.container div');
-alldivs.forEach((div) => {
-    div.addEventListener(('mouseenter'), () => {
-        div.setAttribute("class", "hovered");
-    })
-})
-
-const clearbutton = document.querySelector('button');
+// clear drawing function
+const clearbutton = document.querySelector('.clear');
 clearbutton.addEventListener(('click'), () => {
     alldivs.forEach((div) => {
         div.classList.remove('hovered');
     }) 
-
-    let sidesize = prompt('Size (1 - 100)');
+    
+    // ask user for new size 
+    sidesize = prompt('Size (1 - 100)');
     while ((sidesize > 100) || (isNaN(sidesize))) {
         sidesize = prompt('Size (1 - 100)');
     }
-
-    createGrid(container, sidesize);
+    createGrid(container, sidesize); // create new grid
 })

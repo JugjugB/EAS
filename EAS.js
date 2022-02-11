@@ -2,17 +2,10 @@
 
 let sidesize = 16; // set grid size to 16 (per side)
 
-const body = document.querySelector('body');
-body.style.textAlign = 'center';
-
 const container = document.createElement('div'); // create container div
 container.setAttribute('class', 'container');
-container.style.cssText = 'width: 500px; height: 500px; display: inline-grid;' 
-                          + `grid-template-columns: repeat(${sidesize}, 1fr);`;
-body.appendChild(container); 
 
-const buttons = document.querySelector('.buttons');
-buttons.style.cssText = 'display: block; margin: 5px;'
+document.body.appendChild(container); 
 
 // create grid function
 function createGrid(container, size) {

@@ -1,10 +1,12 @@
-// initialize body,container, and button elements 
-
+// initialize body and container elements 
 const container = document.createElement('div'); // create container div
 container.setAttribute('class', 'container');
 document.body.appendChild(container); 
 
 let sidesize = 16; // set grid size to 16 (per side)
+let backgroundColor = 'black';
+
+const colorpicker = document.querySelector('.colorpicker'); // add color palette
 
 // create grid function
 function createGrid(container, size) {
@@ -18,10 +20,12 @@ function createGrid(container, size) {
             container.appendChild(div);
         }
     }
-
-    let backgroundColor = 'red'; // set color
-
     let alldivs = document.querySelectorAll('.container div');
+
+    // color palette function 
+    colorpicker.addEventListener(('input'), () => {
+        backgroundColor = colorpicker.value;
+    })
 
     // drawing function
     alldivs.forEach((div) => {

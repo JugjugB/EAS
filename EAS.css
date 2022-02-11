@@ -1,0 +1,19 @@
+body {
+    text-align: center;
+}
+
+.container {
+    top: 100px;
+    border-style: solid;
+    width: 450px;
+    height: 450px;
+    display: inline-grid;
+}
+
+.buttons {
+    margin: 10px;
+}
+
+.container div {
+    border-width: 0.5px;
+}

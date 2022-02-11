@@ -1,19 +1,15 @@
 // initialize body,container, and button elements 
 
-let sidesize = 16; // set grid size to 16 (per side)
-
-const ui = document.querySelector('.ui');
-
 const container = document.createElement('div'); // create container div
 container.setAttribute('class', 'container');
+document.body.appendChild(container); 
 
-ui.appendChild(container); 
+let sidesize = 16; // set grid size to 16 (per side)
 
 // create grid function
 function createGrid(container, size) {
     container.textContent = ''; // erase all divs when creating new grid
-    container.style.cssText = 'width: 500px; height: 500px; display: inline-grid;' 
-                              + `grid-template-columns: repeat(${size}, 1fr);`;
+    container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
 
     // add new divs
     for (i = 0; i < size; i++) {
@@ -64,7 +60,7 @@ clearbutton.addEventListener(('click'), () => {
     
     // ask user for new size 
     sidesize = prompt('Size (1 - 100)');
-    while ((sidesize > 100) || (isNaN(sidesize))) {
+    while ((sidesize <= 0) || (sidesize > 100) || (isNaN(sidesize))) {
         sidesize = prompt('Size (1 - 100)');
     }
     createGrid(container, sidesize); // create new grid
